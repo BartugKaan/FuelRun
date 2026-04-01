@@ -43,9 +43,9 @@ public class RoadSpawner : MonoBehaviour
     {
         RoadChunk chunk = _chunkPool.Get();
         chunk.transform.position = new Vector3(0, 0, _nextSpawnZ);
-        chunk.ResetChunk();
         _activeChunks.Add(chunk);
         _nextSpawnZ += chunk.ChunkLength;
+        chunk.ResetChunk();
     }
 
     private void RecycleChunks()
