@@ -7,12 +7,17 @@ public class FuelPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("Player")) return;
-        
+        if (!other.CompareTag("Player")) return;
+
         FuelSystem fuelSystem = other.GetComponent<FuelSystem>();
-        if(fuelSystem == null) return;
-        
-        fuelSystem.AddFuel(fuelAmount);
+        ComboSystem comboSystem = other.GetComponent<ComboSystem>();
+    
+        if (fuelSystem == null) return;
+
+        int combo = comboSystem != null ? comboSystem.CurrentCombo : 0;
+        float multiplier = 1f + (combo * 0.5f);
+    
+        fuelSystem.AddFuel(fuelAmount * multiplier);
         gameObject.SetActive(false);
     }
 }

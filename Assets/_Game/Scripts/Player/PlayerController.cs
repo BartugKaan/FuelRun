@@ -7,9 +7,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float forwardSpeed = 10f;
     [SerializeField] private float laneChangeSpeed = 8f;
     [SerializeField] private LaneSystem _laneSystem;
+    [SerializeField] private NearMissDetector _nearMissDetector;
+    [SerializeField] private ComboSystem _comboSystem;
 
     private float _targetX;
     private bool _isMovingLane;
+
+    private void Awake()
+    {
+        _nearMissDetector.Initialize(_comboSystem);
+    }
 
 
     private void Start()
